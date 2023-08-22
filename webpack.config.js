@@ -3,6 +3,7 @@ import StylelintWebpackPlugin from "stylelint-webpack-plugin";
 import EslintWebpackPlugin from "eslint-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import HtmlInlineScriptPlugin from "html-inline-script-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 import path from "path";
 import ngrok from "ngrok";
 import { fileURLToPath } from "url";
@@ -102,6 +103,11 @@ const config = {
     new HtmlInlineScriptPlugin({
       scriptMatchPattern: [/telegram-web-apps/],
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: './tonconnect-manifest.json', to: 'tonconnect-manifest.json' }
+      ]
+    })
   ],
   resolve: {
     extensions: [".ts", ".tsx", ".js"],

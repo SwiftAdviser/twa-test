@@ -55,5 +55,9 @@
     "test:stylelint": "stylelint \"src/**/*.css\"",
     "test:tsc": "tsc",
     "test:prettier": "prettier --check"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "file-loader": "^6.2.0"
   }
 }
