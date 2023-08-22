@@ -1,8 +1,8 @@
-import { createRoot } from "react-dom/client";
-import { AppearanceProvider, Section, Page, Cell, Switch } from "@twa-dev/mark42";
-import { InitialsAvatar } from '@twa-dev/mark42';
-import { useColorScheme, useTheme, usePlatform } from "@twa-dev/mark42";
-import {TonConnectButton, TonConnectUIProvider} from "@tonconnect/ui-react";
+import {createRoot} from "react-dom/client";
+import {AppearanceProvider, Section, Page, Cell, Switch} from "@twa-dev/mark42";
+import {InitialsAvatar} from '@twa-dev/mark42';
+import {useColorScheme, useTheme, usePlatform} from "@twa-dev/mark42";
+import {TonConnectButton, TonConnectUIProvider, useTonAddress} from "@tonconnect/ui-react";
 
 
 const MyButton = (props) => {
@@ -13,45 +13,43 @@ const MyButton = (props) => {
   return <button {...props} />
 }
 
+
+const Address = () => {
+  const userFriendlyAddress = useTonAddress();
+  const rawAddress = useTonAddress(false);
+
+  return (
+      <div>
+        <Cell description={userFriendlyAddress}>
+          User-friendly address
+        </Cell>
+        <Cell description={rawAddress}>
+          Raw address
+        </Cell>
+      </div>
+  );
+};
+
 const root = createRoot(document.getElementById("root") as HTMLElement)
 root.render(
-  <TonConnectUIProvider manifestUrl="https://<YOUR_APP_URL>/tonconnect-manifest.json">
+  <TonConnectUIProvider manifestUrl="https://twa-test-beryl.vercel.app/tonconnect-manifest.json">
 
-  <AppearanceProvider theme={"apple"} colorScheme={"light"}>
+    <AppearanceProvider theme={"apple"} colorScheme={"light"}>
 
-  <Page mode="primary">
+      <Page mode="primary">
 
-    <TonConnectButton />
+        <TonConnectButton />
 
-    <Section
-      title="Title"
-      description={"Share your contacts with the community. It will help other members to reach you faster."}
-      header={"Section"}
-    >
-      <MyButton>click me</MyButton>
+        <Section
+          title="Addresses"
+          description={"Share your contacts with the community. It will help other members to reach you faster."}
+          header={"Addresses"}
+        >
+          <MyButton>click me</MyButton>
 
-      Content
+          <Address />
+        </Section>
+      </Page>
 
-      <Cell after={<Switch />} description="@Stambultsian">
-
-        <InitialsAvatar
-          entityId={1}
-          entityName={'Roman Krutovoy'}
-          theme="apple"
-          className="My Avatar"
-          style={{ marginRight: 10 }}
-        />
-
-        Twitter
-      </Cell>
-      <Cell after={<Switch />} description="@artursupertramp">
-        Facebook
-      </Cell>
-      <Cell after={<Switch />} description="@ArthurStam">
-        Telegram
-      </Cell>
-    </Section>
-  </Page>
-
-</AppearanceProvider>
+    </AppearanceProvider>
   </TonConnectUIProvider>);
