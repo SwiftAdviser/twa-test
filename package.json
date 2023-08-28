@@ -8,7 +8,7 @@
     "@babel/preset-env": "^7.18.10",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
-    "@tonconnect/ui-react": "^1.0.0-beta.9",
+    "@tonconnect/ui-react": "https://gitpkg.now.sh/ton-connect/sdk/packages/ui-react?feature_next-build",
     "@twa-dev/mark42": "^0.0.37",
     "@twa-dev/sdk": "^6.7.1",
     "@types/react": "^18.0.17",
